@@ -24,3 +24,24 @@ sample_data/boundary_tests.csv          Extra patients for testing the rules
 source_code/                            Optional: only needed to change the prototype
 
 All patients are synthetic. This is a concept prototype, not a clinical tool.
+
+FILES NOT UPLOADED TO GITHUB
+Everything in the project folder was uploaded except these 4 files:
+
+  .DS_Store
+  MedIntel_Stage_II_handover/.DS_Store
+  MedIntel_Stage_II_handover/medintel/.DS_Store
+  MedIntel_Stage_II_handover/medintel/tests/.DS_Store
+
+.DS_Store files are hidden files that macOS Finder creates on its own to
+remember folder view settings (icon positions, sort order). They are not
+part of the project and nothing uses them. The .gitignore file in this
+repository keeps them out of future uploads.
+
+Also note: MedIntel_Stage_II_handover/medintel/.gitignore lists files
+that the Stage II code generates when you run it (for example .venv/,
+trained model files in models/*.json, local databases *.db and the .env
+file for API keys). None of these existed when the project was uploaded,
+so nothing was left out because of them. If you create them later, they
+will stay on your computer and will not be uploaded. Never upload .env,
+because it holds secret API keys.

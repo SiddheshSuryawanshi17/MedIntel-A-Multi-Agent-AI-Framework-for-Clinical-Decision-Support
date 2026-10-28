@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.db
+*.db-journal
+.DS_Store
+.env
+data/raw/
+models/*.json
+reports/*.jsonl
+reports/evaluation/planned_cases.xml
+*.token

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Removing one component at a time (test split)" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif">
+<rect width="640" height="420" fill="#fcfcfb"/>
+<text x="64" y="26" font-size="15" font-weight="600" fill="#0b0b0b">Removing one component at a time (test split)</text>
+<line x1="64" y1="356.0" x2="616" y2="356.0" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="360.0" font-size="11" fill="#52514e" text-anchor="end">0.0</text>
+<line x1="64" y1="300.8" x2="616" y2="300.8" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="304.8" font-size="11" fill="#52514e" text-anchor="end">0.2</text>
+<line x1="64" y1="245.6" x2="616" y2="245.6" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="249.6" font-size="11" fill="#52514e" text-anchor="end">0.4</text>
+<line x1="64" y1="190.4" x2="616" y2="190.4" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="194.4" font-size="11" fill="#52514e" text-anchor="end">0.6</text>
+<line x1="64" y1="135.2" x2="616" y2="135.2" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="139.2" font-size="11" fill="#52514e" text-anchor="end">0.8</text>
+<line x1="64" y1="80.0" x2="616" y2="80.0" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="84.0" font-size="11" fill="#52514e" text-anchor="end">1.0</text>
+<text x="119.2" y="374" font-size="11" fill="#52514e" text-anchor="middle">Full</text>
+<rect x="92.2" y="112.3" width="26.0" height="243.7" rx="3" fill="#2a78d6"><title>Accuracy of decided cases, Full: 0.883</title></rect>
+<text x="105.2" y="107.3" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.88</text>
+<rect x="120.2" y="84.4" width="26.0" height="271.6" rx="3" fill="#eb6834"><title>Coverage (share decided), Full: 0.984</title></rect>
+<text x="133.2" y="79.4" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.98</text>
+<text x="229.6" y="374" font-size="11" fill="#52514e" text-anchor="middle">no ML</text>
+<rect x="230.6" y="356.0" width="26.0" height="0.0" rx="3" fill="#eb6834"><title>Coverage (share decided), no ML: 0.000</title></rect>
+<text x="243.6" y="351.0" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.00</text>
+<text x="340.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">no rules</text>
+<rect x="313.0" y="100.4" width="26.0" height="255.6" rx="3" fill="#2a78d6"><title>Accuracy of decided cases, no rules: 0.926</title></rect>
+<text x="326.0" y="95.4" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.93</text>
+<rect x="341.0" y="111.7" width="26.0" height="244.3" rx="3" fill="#eb6834"><title>Coverage (share decided), no rules: 0.885</title></rect>
+<text x="354.0" y="106.7" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.89</text>
+<text x="450.4" y="374" font-size="11" fill="#52514e" text-anchor="middle">no retrieval</text>
+<rect x="423.4" y="111.7" width="26.0" height="244.3" rx="3" fill="#2a78d6"><title>Accuracy of decided cases, no retrieval: 0.885</title></rect>
+<text x="436.4" y="106.7" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.89</text>
+<rect x="451.4" y="80.0" width="26.0" height="276.0" rx="3" fill="#eb6834"><title>Coverage (share decided), no retrieval: 1.000</title></rect>
+<text x="464.4" y="75.0" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.00</text>
+<text x="560.8" y="374" font-size="11" fill="#52514e" text-anchor="middle">no conflicts</text>
+<rect x="533.8" y="111.7" width="26.0" height="244.3" rx="3" fill="#2a78d6"><title>Accuracy of decided cases, no conflicts: 0.885</title></rect>
+<text x="546.8" y="106.7" font-size="10.5" fill="#0b0b0b" text-anchor="middle">0.89</text>
+<rect x="561.8" y="80.0" width="26.0" height="276.0" rx="3" fill="#eb6834"><title>Coverage (share decided), no conflicts: 1.000</title></rect>
+<text x="574.8" y="75.0" font-size="10.5" fill="#0b0b0b" text-anchor="middle">1.00</text>
+<text x="340.0" y="404" font-size="12" fill="#52514e" text-anchor="middle"></text>
+<text transform="translate(16 218.0) rotate(-90)" font-size="12" fill="#52514e" text-anchor="middle">Score (0 to 1)</text>
+<rect x="64" y="36" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="79" y="45" font-size="12" fill="#52514e">Accuracy of decided cases</text>
+<rect x="263" y="36" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="278" y="45" font-size="12" fill="#52514e">Coverage (share decided)</text>
+</svg>

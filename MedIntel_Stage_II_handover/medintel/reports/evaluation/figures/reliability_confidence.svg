@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Does the confidence mean what it says? (test split)" font-family="system-ui, -apple-system, Segoe UI, Arial, sans-serif">
+<rect width="640" height="420" fill="#fcfcfb"/>
+<text x="64" y="26" font-size="15" font-weight="600" fill="#0b0b0b">Does the confidence mean what it says? (test split)</text>
+<line x1="64" y1="356.0" x2="616" y2="356.0" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="360.0" font-size="11" fill="#52514e" text-anchor="end">0.0</text>
+<line x1="64" y1="300.8" x2="616" y2="300.8" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="304.8" font-size="11" fill="#52514e" text-anchor="end">0.2</text>
+<line x1="64" y1="245.6" x2="616" y2="245.6" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="249.6" font-size="11" fill="#52514e" text-anchor="end">0.4</text>
+<line x1="64" y1="190.4" x2="616" y2="190.4" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="194.4" font-size="11" fill="#52514e" text-anchor="end">0.6</text>
+<line x1="64" y1="135.2" x2="616" y2="135.2" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="139.2" font-size="11" fill="#52514e" text-anchor="end">0.8</text>
+<line x1="64" y1="80.0" x2="616" y2="80.0" stroke="#e6e5e0" stroke-width="1"/>
+<text x="56" y="84.0" font-size="11" fill="#52514e" text-anchor="end">1.0</text>
+<text x="64.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.4</text>
+<text x="156.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.5</text>
+<text x="248.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.6</text>
+<text x="340.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.7</text>
+<text x="432.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.8</text>
+<text x="524.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">0.9</text>
+<text x="616.0" y="374" font-size="11" fill="#52514e" text-anchor="middle">1.0</text>
+<line x1="64.0" y1="245.6" x2="616.0" y2="80" stroke="#52514e" stroke-width="1" stroke-dasharray="4 4"/>
+<path d="M217.6,245.6 L271.0,190.4 L402.6,171.9 L481.7,80.0 L562.6,80.0" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="217.6" cy="245.6" r="6.2" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"><title>ML confidence M: n = 5</title></circle>
+<circle cx="271.0" cy="190.4" r="6.2" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"><title>ML confidence M: n = 5</title></circle>
+<circle cx="402.6" cy="171.9" r="6.4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"><title>ML confidence M: n = 6</title></circle>
+<circle cx="481.7" cy="80.0" r="7.7" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"><title>ML confidence M: n = 14</title></circle>
+<circle cx="562.6" cy="80.0" r="9.6" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"><title>ML confidence M: n = 31</title></circle>
+<path d="M309.6,190.4 L369.4,190.4 L496.4,90.2 L536.9,80.0" fill="none" stroke="#eb6834" stroke-width="2"/>
+<circle cx="237.0" cy="80.0" r="5.0" fill="#fcfcfb" stroke="#eb6834" stroke-width="2"><title>Fused C, design weights: n = 1</title></circle>
+<circle cx="309.6" cy="190.4" r="6.2" fill="#eb6834" stroke="#eb6834" stroke-width="2"><title>Fused C, design weights: n = 5</title></circle>
+<circle cx="369.4" cy="190.4" r="7.2" fill="#eb6834" stroke="#eb6834" stroke-width="2"><title>Fused C, design weights: n = 10</title></circle>
+<circle cx="496.4" cy="90.2" r="9.2" fill="#eb6834" stroke="#eb6834" stroke-width="2"><title>Fused C, design weights: n = 27</title></circle>
+<circle cx="536.9" cy="80.0" r="8.2" fill="#eb6834" stroke="#eb6834" stroke-width="2"><title>Fused C, design weights: n = 18</title></circle>
+<path d="M318.8,218.0 L375.0,171.9 L492.7,105.1 L561.7,80.0" fill="none" stroke="#1baf7a" stroke-width="2"/>
+<circle cx="232.4" cy="80.0" r="5.0" fill="#fcfcfb" stroke="#1baf7a" stroke-width="2"><title>Fused C, tuned weights: n = 1</title></circle>
+<circle cx="318.8" cy="218.0" r="6.4" fill="#1baf7a" stroke="#1baf7a" stroke-width="2"><title>Fused C, tuned weights: n = 6</title></circle>
+<circle cx="375.0" cy="171.9" r="7.0" fill="#1baf7a" stroke="#1baf7a" stroke-width="2"><title>Fused C, tuned weights: n = 9</title></circle>
+<circle cx="492.7" cy="105.1" r="7.3" fill="#1baf7a" stroke="#1baf7a" stroke-width="2"><title>Fused C, tuned weights: n = 11</title></circle>
+<circle cx="561.7" cy="80.0" r="9.8" fill="#1baf7a" stroke="#1baf7a" stroke-width="2"><title>Fused C, tuned weights: n = 34</title></circle>
+<text x="340.0" y="404" font-size="12" fill="#52514e" text-anchor="middle">Mean confidence (hollow: bins with fewer than 3 cases)</text>
+<text transform="translate(16 218.0) rotate(-90)" font-size="12" fill="#52514e" text-anchor="middle">Share of decisions that were right</text>
+<rect x="64" y="36" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="79" y="45" font-size="12" fill="#52514e">ML confidence M</text>
+<rect x="193" y="36" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="208" y="45" font-size="12" fill="#52514e">Fused C, design weights</text>
+<rect x="378" y="36" width="10" height="10" rx="2" fill="#1baf7a"/>
+<text x="393" y="45" font-size="12" fill="#52514e">Fused C, tuned weights</text>
+</svg>

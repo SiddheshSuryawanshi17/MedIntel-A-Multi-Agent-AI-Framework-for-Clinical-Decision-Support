@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DecisionReport",
+  "type": "object",
+  "required": [
+    "case_id", "patient_id", "findings", "prediction", "triggered_rules",
+    "evidence_refs", "conflicts", "confidence", "recommendation", "status", "versions"
+  ],
+  "properties": {
+    "case_id": {"type": "string"},
+    "patient_id": {"type": "string"},
+    "findings": {"type": "array", "items": {"type": "string"}},
+    "prediction": {"type": "string"},
+    "triggered_rules": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "conflicts": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"type": "number"},
+    "component_scores": {"type": "object"},
+    "recommendation": {"type": "string"},
+    "status": {"enum": ["pending_review", "accepted", "rejected", "annotated", "failed"]},
+    "notes": {"type": "string"},
+    "versions": {
+      "type": "object",
+      "properties": {
+        "model": {"type": "string"},
+        "rulebase": {"type": "string"},
+        "index": {"type": "string"}
+      }
+    }
+  }
+}

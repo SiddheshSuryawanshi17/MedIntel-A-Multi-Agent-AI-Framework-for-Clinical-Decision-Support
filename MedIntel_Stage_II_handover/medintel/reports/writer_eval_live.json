@@ -1,0 +1,22 @@
+{
+  "mode": "live",
+  "cases": "samples",
+  "n_cases": 24,
+  "results": {
+    "claude-opus-5-5 (effort low, prompt 9820e7c4)": {
+      "cases": 24,
+      "usable_replies": 24,
+      "fallbacks": 0,
+      "sentences_per_case": 5.17,
+      "sentences_removed_by_tc12": 0,
+      "removed_share": 0.0,
+      "cases_with_a_removal": 0,
+      "mean_input_tokens": 2034,
+      "mean_output_tokens": 687,
+      "cost_usd_total": 0.5516,
+      "cost_usd_per_case": 0.02299,
+      "latency_s_mean": 6.38,
+      "latency_s_max": 7.19
+    }
+  }
+}

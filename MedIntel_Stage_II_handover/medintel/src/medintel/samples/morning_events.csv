@@ -1,0 +1,18 @@
+patient_id,time,text
+P-1041,07:05,Registered for annual check-up
+P-1041,07:12,Vitals recorded by nursing staff
+P-1042,07:58,Arrived at outpatient triage with headache
+P-1042,08:12,Triage BP 186/112 mmHg
+P-1042,08:20,Repeat BP reading requested
+P-1043,07:20,Referred by general physician
+P-1043,07:41,Outpatient ECG ordered
+P-1044,07:33,Follow-up after an emergency visit last month
+P-1044,07:50,Holter monitoring discussed
+P-1045,07:15,Blood samples collected
+P-1045,07:46,Lab: creatinine sample not received
+P-1046,08:01,Sports physical requested by school
+P-1046,08:09,Vitals recorded
+P-1047,07:25,Visit for breathlessness on exertion
+P-1047,07:38,Ankle swelling noted on examination
+P-1048,07:10,Pre-employment screening
+P-1048,07:18,Vitals recorded

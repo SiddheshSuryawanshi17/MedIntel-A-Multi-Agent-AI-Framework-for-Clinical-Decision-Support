@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "approved_by": "knowledge_curator",
+  "rules": [
+    {
+      "rule_id": "R-001",
+      "field": "systolic_bp",
+      "operator": ">=",
+      "threshold": 180,
+      "action": "elevate",
+      "severity": "high",
+      "message": "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+    },
+    {
+      "rule_id": "R-002",
+      "field": "creatinine",
+      "operator": "missing",
+      "threshold": null,
+      "action": "flag",
+      "severity": "medium",
+      "message": "Serum creatinine missing; kidney-related rules cannot be checked."
+    },
+    {
+      "rule_id": "R-003",
+      "field": "age",
+      "operator": "<",
+      "threshold": 18,
+      "action": "suppress",
+      "severity": "high",
+      "message": "Model intended for adults; recommendation withheld under age 18."
+    },
+    {
+      "rule_id": "R-004",
+      "field": "heart_rate",
+      "operator": ">=",
+      "threshold": 120,
+      "action": "flag",
+      "severity": "medium",
+      "message": "Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness."
+    }
+  ]
+}

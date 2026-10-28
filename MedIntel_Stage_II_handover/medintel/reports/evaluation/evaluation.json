@@ -1,0 +1,542 @@
+{
+  "created": "2026-10-18T02:28:23+00:00",
+  "configuration": {
+    "model": "risk-lr-uci 1.0.0 (36286f9d)",
+    "rulebase": "1.0.0",
+    "index": "medintel-starter-kb 1.0.0-draft (ff6c9a43)",
+    "retrieval": "embedding similarity (sentence-transformers/all-MiniLM-L6-v2, cosine, numpy inner-product index)",
+    "summary_writer": "template (deterministic; Claude summaries are evaluated by eval-writer)",
+    "design_fusion": {
+      "alpha": 0.5,
+      "beta": 0.3,
+      "gamma": 0.2,
+      "lam": 0.5,
+      "threshold": 0.6
+    },
+    "tuned_fusion": {
+      "alpha": 0.65,
+      "beta": 0.3,
+      "gamma": 0.05,
+      "lam": 0.5,
+      "threshold": 0.739
+    },
+    "split": "UCI Cleveland, stratified 60/20/20, seed 2026: 61 validation, 61 test"
+  },
+  "conditions": {
+    "ML only": {
+      "design": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.071,
+        "ece_confidence": 0.088,
+        "disagreement_rate": 0.0
+      },
+      "tuned": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.071,
+        "ece_confidence": 0.088,
+        "disagreement_rate": 0.0
+      }
+    },
+    "ML + rules": {
+      "design": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.078,
+        "ece_confidence": 0.074,
+        "disagreement_rate": 0.0
+      },
+      "tuned": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.076,
+        "ece_confidence": 0.07,
+        "disagreement_rate": 0.0
+      }
+    },
+    "ML + rules + retrieval": {
+      "design": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.082,
+        "ece_confidence": 0.102,
+        "disagreement_rate": 0.115
+      },
+      "tuned": {
+        "n": 61,
+        "coverage": 1.0,
+        "accuracy": 0.885,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.909,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.077,
+        "ece_confidence": 0.073,
+        "disagreement_rate": 0.115
+      }
+    },
+    "Full pipeline": {
+      "design": {
+        "n": 61,
+        "coverage": 0.984,
+        "accuracy": 0.883,
+        "precision": 0.889,
+        "recall": 0.857,
+        "specificity": 0.906,
+        "f1": 0.873,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.086,
+        "ece_confidence": 0.101,
+        "disagreement_rate": 0.115
+      },
+      "tuned": {
+        "n": 61,
+        "coverage": 0.787,
+        "accuracy": 0.958,
+        "precision": 0.955,
+        "recall": 0.955,
+        "specificity": 0.962,
+        "f1": 0.955,
+        "roc_auc": 0.975,
+        "brier_confidence": 0.08,
+        "ece_confidence": 0.075,
+        "disagreement_rate": 0.115
+      }
+    }
+  },
+  "ablation": {
+    "Full pipeline": {
+      "n": 61,
+      "coverage": 0.984,
+      "accuracy": 0.883,
+      "precision": 0.889,
+      "recall": 0.857,
+      "specificity": 0.906,
+      "f1": 0.873,
+      "roc_auc": 0.975,
+      "brier_confidence": 0.086,
+      "ece_confidence": 0.101,
+      "disagreement_rate": 0.115
+    },
+    "without ML": {
+      "n": 61,
+      "coverage": 0.0,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "specificity": null,
+      "f1": null,
+      "roc_auc": 0.975,
+      "brier_confidence": 0.104,
+      "ece_confidence": 0.037,
+      "disagreement_rate": 0.115
+    },
+    "without rules": {
+      "n": 61,
+      "coverage": 0.885,
+      "accuracy": 0.926,
+      "precision": 0.92,
+      "recall": 0.92,
+      "specificity": 0.931,
+      "f1": 0.92,
+      "roc_auc": 0.975,
+      "brier_confidence": 0.09,
+      "ece_confidence": 0.124,
+      "disagreement_rate": 0.115
+    },
+    "without retrieval": {
+      "n": 61,
+      "coverage": 1.0,
+      "accuracy": 0.885,
+      "precision": 0.889,
+      "recall": 0.857,
+      "specificity": 0.909,
+      "f1": 0.873,
+      "roc_auc": 0.975,
+      "brier_confidence": 0.078,
+      "ece_confidence": 0.074,
+      "disagreement_rate": 0.0
+    },
+    "without conflict detection": {
+      "n": 61,
+      "coverage": 1.0,
+      "accuracy": 0.885,
+      "precision": 0.889,
+      "recall": 0.857,
+      "specificity": 0.909,
+      "f1": 0.873,
+      "roc_auc": 0.975,
+      "brier_confidence": 0.082,
+      "ece_confidence": 0.102,
+      "disagreement_rate": 0.115
+    }
+  },
+  "calibration": {
+    "ml_probability": {
+      "ece": 0.094,
+      "reliability": [
+        {
+          "bin": "0.0-0.1",
+          "n": 17,
+          "mean_predicted": 0.061,
+          "observed": 0.0
+        },
+        {
+          "bin": "0.1-0.2",
+          "n": 7,
+          "mean_predicted": 0.148,
+          "observed": 0.0
+        },
+        {
+          "bin": "0.2-0.3",
+          "n": 6,
+          "mean_predicted": 0.225,
+          "observed": 0.333
+        },
+        {
+          "bin": "0.3-0.4",
+          "n": 2,
+          "mean_predicted": 0.377,
+          "observed": 0.5
+        },
+        {
+          "bin": "0.4-0.5",
+          "n": 2,
+          "mean_predicted": 0.433,
+          "observed": 0.5
+        },
+        {
+          "bin": "0.5-0.6",
+          "n": 3,
+          "mean_predicted": 0.568,
+          "observed": 0.333
+        },
+        {
+          "bin": "0.6-0.7",
+          "n": 3,
+          "mean_predicted": 0.626,
+          "observed": 0.667
+        },
+        {
+          "bin": "0.7-0.8",
+          "n": 1,
+          "mean_predicted": 0.76,
+          "observed": 1.0
+        },
+        {
+          "bin": "0.8-0.9",
+          "n": 6,
+          "mean_predicted": 0.866,
+          "observed": 1.0
+        },
+        {
+          "bin": "0.9-1.0",
+          "n": 14,
+          "mean_predicted": 0.947,
+          "observed": 1.0
+        }
+      ]
+    },
+    "ml_confidence": {
+      "ece": 0.088,
+      "reliability": [
+        {
+          "bin": "0.5-0.6",
+          "n": 5,
+          "mean_predicted": 0.567,
+          "observed": 0.4
+        },
+        {
+          "bin": "0.6-0.7",
+          "n": 5,
+          "mean_predicted": 0.625,
+          "observed": 0.6
+        },
+        {
+          "bin": "0.7-0.8",
+          "n": 6,
+          "mean_predicted": 0.768,
+          "observed": 0.667
+        },
+        {
+          "bin": "0.8-0.9",
+          "n": 14,
+          "mean_predicted": 0.854,
+          "observed": 1.0
+        },
+        {
+          "bin": "0.9-1.0",
+          "n": 31,
+          "mean_predicted": 0.942,
+          "observed": 1.0
+        }
+      ]
+    },
+    "fused_C_design": {
+      "ece": 0.101,
+      "reliability": [
+        {
+          "bin": "0.5-0.6",
+          "n": 1,
+          "mean_predicted": 0.588,
+          "observed": 1.0
+        },
+        {
+          "bin": "0.6-0.7",
+          "n": 5,
+          "mean_predicted": 0.667,
+          "observed": 0.6
+        },
+        {
+          "bin": "0.7-0.8",
+          "n": 10,
+          "mean_predicted": 0.732,
+          "observed": 0.6
+        },
+        {
+          "bin": "0.8-0.9",
+          "n": 27,
+          "mean_predicted": 0.87,
+          "observed": 0.963
+        },
+        {
+          "bin": "0.9-1.0",
+          "n": 18,
+          "mean_predicted": 0.914,
+          "observed": 1.0
+        }
+      ]
+    },
+    "fused_C_tuned": {
+      "ece": 0.075,
+      "reliability": [
+        {
+          "bin": "0.5-0.6",
+          "n": 1,
+          "mean_predicted": 0.583,
+          "observed": 1.0
+        },
+        {
+          "bin": "0.6-0.7",
+          "n": 6,
+          "mean_predicted": 0.677,
+          "observed": 0.5
+        },
+        {
+          "bin": "0.7-0.8",
+          "n": 9,
+          "mean_predicted": 0.738,
+          "observed": 0.667
+        },
+        {
+          "bin": "0.8-0.9",
+          "n": 11,
+          "mean_predicted": 0.866,
+          "observed": 0.909
+        },
+        {
+          "bin": "0.9-1.0",
+          "n": 34,
+          "mean_predicted": 0.941,
+          "observed": 1.0
+        }
+      ]
+    }
+  },
+  "rule_alerts_validation": {
+    "R-001": {
+      "action": "elevate",
+      "fired": 1,
+      "false_alerts": 0,
+      "false_alert_rate": 0.0
+    },
+    "R-002": {
+      "action": "flag",
+      "fired": 61,
+      "note": "data-completeness or scope flag, not a risk alert"
+    },
+    "R-003": {
+      "action": "suppress",
+      "fired": 0,
+      "note": "scope rule"
+    },
+    "R-004": {
+      "action": "flag",
+      "fired": 0,
+      "note": "data-completeness or scope flag, not a risk alert"
+    }
+  },
+  "latency": {
+    "cold_start": {
+      "build_s": 0.001,
+      "first_case_s": 3.596,
+      "first_case_retrieval_s": 3.5944
+    },
+    "stages": {
+      "ml": {
+        "median_ms": 0.1,
+        "p95_ms": 0.1,
+        "max_ms": 0.1
+      },
+      "rules": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0,
+        "max_ms": 0.1
+      },
+      "retrieval": {
+        "median_ms": 12.05,
+        "p95_ms": 14.6,
+        "max_ms": 129.1
+      },
+      "context": {
+        "median_ms": 0.7,
+        "p95_ms": 0.8,
+        "max_ms": 0.8
+      },
+      "fusion": {
+        "median_ms": 0.0,
+        "p95_ms": 0.0,
+        "max_ms": 0.0
+      },
+      "total": {
+        "median_ms": 13.2,
+        "p95_ms": 15.7,
+        "max_ms": 130.1
+      }
+    },
+    "throughput_cases_per_minute": {
+      "1": 5023.8,
+      "2": 4927.8,
+      "4": 4227.8,
+      "8": 4841.3
+    }
+  },
+  "completeness": {
+    "reports": 146,
+    "schema_pass_rate": 1.0,
+    "summary_sentences": 903,
+    "removed_by_tc12": 0,
+    "kept_with_a_source": 1.0,
+    "writers": [
+      "template"
+    ]
+  },
+  "evidence": {
+    "cited": 618,
+    "valid_source_ids": 1.0,
+    "cases_without_evidence": 0
+  },
+  "precision_at_5": {
+    "status": "labels pending",
+    "file": "reports/labeling/evidence_relevance.csv"
+  },
+  "explanation_rubric": {
+    "status": "scores pending",
+    "file": "reports/labeling/explanation_rubric.csv"
+  },
+  "summary_writer": {
+    "mode": "batch",
+    "cases": "all",
+    "n_cases": 85,
+    "results": {
+      "claude-opus-5-5 (effort low, prompt 9820e7c4)": {
+        "cases": 85,
+        "usable_replies": 85,
+        "fallbacks": 0,
+        "sentences_per_case": 5.0,
+        "sentences_removed_by_tc12": 3,
+        "removed_share": 0.007,
+        "cases_with_a_removal": 3,
+        "mean_input_tokens": 2006,
+        "mean_output_tokens": 683,
+        "cost_usd_total": 0.9332,
+        "cost_usd_per_case": 0.01098,
+        "latency_s_mean": null,
+        "latency_s_max": null
+      },
+      "claude-opus-5-5 (effort medium, prompt 9820e7c4)": {
+        "cases": 85,
+        "usable_replies": 85,
+        "fallbacks": 0,
+        "sentences_per_case": 5.42,
+        "sentences_removed_by_tc12": 3,
+        "removed_share": 0.007,
+        "cases_with_a_removal": 3,
+        "mean_input_tokens": 2006,
+        "mean_output_tokens": 1001,
+        "cost_usd_total": 1.201,
+        "cost_usd_per_case": 0.01413,
+        "latency_s_mean": null,
+        "latency_s_max": null
+      }
+    }
+  },
+  "summary_writer_live": {
+    "mode": "live",
+    "cases": "samples",
+    "n_cases": 24,
+    "results": {
+      "claude-opus-5-5 (effort low, prompt 9820e7c4)": {
+        "cases": 24,
+        "usable_replies": 24,
+        "fallbacks": 0,
+        "sentences_per_case": 5.17,
+        "sentences_removed_by_tc12": 0,
+        "removed_share": 0.0,
+        "cases_with_a_removal": 0,
+        "mean_input_tokens": 2034,
+        "mean_output_tokens": 687,
+        "cost_usd_total": 0.5516,
+        "cost_usd_per_case": 0.02299,
+        "latency_s_mean": 6.38,
+        "latency_s_max": 7.19
+      }
+    }
+  },
+  "planned_cases": {
+    "TC-01": "pass",
+    "TC-02": "pass",
+    "TC-03": "pass",
+    "TC-04": "pass",
+    "TC-05": "pass",
+    "TC-06": "pass",
+    "TC-07": "pass",
+    "TC-08": "pass",
+    "TC-09": "pass",
+    "TC-10": "pass",
+    "TC-11": "pass",
+    "TC-12": "pass"
+  }
+}

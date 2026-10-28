@@ -1,0 +1,42 @@
+# MedIntel settings (Section 5.2.1). Relative paths are resolved from the project folder.
+
+# Equation (4.2): C = alpha*M + beta*R + gamma*K - lam*D, with alpha + beta + gamma = 1 (design values from the
+# Stage I report). `uv run medintel tune-fusion` proposes values tuned on the validation split; adopt them here only
+# after the team has read reports/fusion_tuning.json.
+[fusion]
+alpha = 0.5
+beta = 0.3
+gamma = 0.2
+lam = 0.5
+threshold = 0.6
+
+# Trained risk model written by `uv run medintel train`. Without the file the server falls back to the
+# prototype's demo weights, and every report's model version says so.
+[ml]
+model = "models/risk-lr-uci.json"
+
+# Knowledge retrieval. "embedding" searches the packaged starter knowledge base (draft summaries of CDC, NIH and
+# MedlinePlus pages) by meaning; "demo" uses the prototype's ten rule-matched passages. min_score drops weaker
+# evidence (TC-06); strong_score is what marked evidence needs to count as a conflict. Both were set from the
+# sample cases: tune min_score with the team's relevance labels (precision at 5). index = "faiss" gives the same
+# results with FAISS, on Linux only (see the README).
+[retrieval]
+backend = "embedding"
+k = 5
+min_score = 0.55
+strong_score = 0.6
+embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
+index = "numpy"
+
+# Clinical context summary. "claude" sends the case facts to the Claude API (use synthetic or de-identified records
+# only) and falls back to the template, saying why, when no ANTHROPIC_API_KEY is set; "template" never calls an API.
+[context]
+writer = "claude"
+model = "claude-opus-5-5"
+effort = "low"
+max_tokens = 8000
+
+# Roles this server instance may act in: data_admin, clinician, curator, sys_admin. Grant only the roles of the
+# person using it (MEDINTEL_ROLES=clinician overrides this). Phase 3 replaces this with authenticated identities.
+[access]
+roles = ["data_admin", "clinician", "curator", "sys_admin"]

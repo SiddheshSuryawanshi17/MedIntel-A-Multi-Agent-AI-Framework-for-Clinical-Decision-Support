@@ -1,0 +1,158 @@
+{
+  "objective": "Brier score of C against a correct pre-threshold decision, validation split",
+  "target_accuracy_when_confident": 0.85,
+  "split_seed": 2026,
+  "retrieval_backend": "embedding",
+  "risk_model": "risk-lr-uci 1.0.0 (36286f9d)",
+  "current": {
+    "alpha": 0.5,
+    "beta": 0.3,
+    "gamma": 0.2,
+    "lam": 0.5,
+    "threshold": 0.6
+  },
+  "tuned": {
+    "alpha": 0.65,
+    "beta": 0.3,
+    "gamma": 0.05,
+    "lam": 0.5,
+    "threshold": 0.739
+  },
+  "held_at_design_values": {
+    "beta": "no validation case has a rule override that disagrees with the model (R is always 1)",
+    "lam": "rule-versus-model conflicts are absent or too rare in the validation split to tune their penalty"
+  },
+  "unconstrained_for_reference": {
+    "alpha": 1.0,
+    "beta": 0.0,
+    "gamma": 0.0,
+    "lam": 0.8,
+    "threshold": 0.627
+  },
+  "validation": {
+    "current": {
+      "n": 61,
+      "accuracy_before_threshold": 0.77,
+      "brier_C": 0.152,
+      "ece_C": 0.072,
+      "coverage": 0.967,
+      "accuracy_when_confident": 0.797,
+      "accuracy_when_uncertain": 0.0,
+      "mean_C": 0.824
+    },
+    "tuned": {
+      "n": 61,
+      "accuracy_before_threshold": 0.77,
+      "brier_C": 0.151,
+      "ece_C": 0.078,
+      "coverage": 0.836,
+      "accuracy_when_confident": 0.863,
+      "accuracy_when_uncertain": 0.3,
+      "mean_C": 0.849
+    },
+    "unconstrained": {
+      "n": 61,
+      "accuracy_before_threshold": 0.77,
+      "brier_C": 0.139,
+      "ece_C": 0.085,
+      "coverage": 0.836,
+      "accuracy_when_confident": 0.863,
+      "accuracy_when_uncertain": 0.3,
+      "mean_C": 0.791
+    }
+  },
+  "test": {
+    "current": {
+      "n": 61,
+      "accuracy_before_threshold": 0.885,
+      "brier_C": 0.086,
+      "ece_C": 0.101,
+      "coverage": 0.984,
+      "accuracy_when_confident": 0.883,
+      "accuracy_when_uncertain": 1.0,
+      "mean_C": 0.839
+    },
+    "tuned": {
+      "n": 61,
+      "accuracy_before_threshold": 0.885,
+      "brier_C": 0.08,
+      "ece_C": 0.075,
+      "coverage": 0.787,
+      "accuracy_when_confident": 0.958,
+      "accuracy_when_uncertain": 0.615,
+      "mean_C": 0.866
+    },
+    "unconstrained": {
+      "n": 61,
+      "accuracy_before_threshold": 0.885,
+      "brier_C": 0.082,
+      "ece_C": 0.09,
+      "coverage": 0.787,
+      "accuracy_when_confident": 0.958,
+      "accuracy_when_uncertain": 0.615,
+      "mean_C": 0.818
+    }
+  },
+  "threshold_table_validation": [
+    {
+      "threshold": 0.5,
+      "coverage": 1.0,
+      "accuracy_when_confident": 0.77
+    },
+    {
+      "threshold": 0.55,
+      "coverage": 1.0,
+      "accuracy_when_confident": 0.77
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.967,
+      "accuracy_when_confident": 0.797
+    },
+    {
+      "threshold": 0.65,
+      "coverage": 0.934,
+      "accuracy_when_confident": 0.789
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.869,
+      "accuracy_when_confident": 0.849
+    },
+    {
+      "threshold": 0.75,
+      "coverage": 0.787,
+      "accuracy_when_confident": 0.875
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.672,
+      "accuracy_when_confident": 0.878
+    },
+    {
+      "threshold": 0.85,
+      "coverage": 0.541,
+      "accuracy_when_confident": 0.909
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.443,
+      "accuracy_when_confident": 0.926
+    },
+    {
+      "threshold": 0.95,
+      "coverage": 0.262,
+      "accuracy_when_confident": 0.938
+    }
+  ],
+  "component_means_validation": {
+    "M": 0.826,
+    "R": 1.0,
+    "K": 0.665,
+    "D": 0.044
+  },
+  "validation_brier": {
+    "tuned": 0.1512,
+    "unconstrained": 0.1391
+  }
+}

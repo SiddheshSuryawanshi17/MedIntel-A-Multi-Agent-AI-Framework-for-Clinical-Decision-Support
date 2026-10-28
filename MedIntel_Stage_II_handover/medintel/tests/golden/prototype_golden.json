@@ -1,0 +1,2993 @@
+{
+  "generated_from": "MedIntel Stage I concept prototype (engine.js)",
+  "settings": {
+    "alpha": 0.5,
+    "beta": 0.3,
+    "gamma": 0.2,
+    "lam": 0.5,
+    "threshold": 0.6,
+    "k": 5,
+    "min_score": 0.55
+  },
+  "batches": [
+    {
+      "file": "morning_batch.csv",
+      "missing_columns": [],
+      "valid": 8,
+      "rejected": [
+        {
+          "row": 10,
+          "patient_id": "",
+          "problems": [
+            {
+              "field": "patient_id",
+              "message": "field required",
+              "test_case": "TC-01"
+            }
+          ]
+        },
+        {
+          "row": 11,
+          "patient_id": "P-1050",
+          "problems": [
+            {
+              "field": "temperature_c",
+              "message": "101.3 looks like °F; expected °C (34-42). Not converted.",
+              "test_case": "TC-02"
+            }
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "case": {
+            "case_id": "C-1041",
+            "patient_id": "P-1041",
+            "x_s": {
+              "age": 42,
+              "sex": "F",
+              "systolic_bp": 118,
+              "diastolic_bp": 76,
+              "heart_rate": 72,
+              "temperature_c": 36.7,
+              "total_cholesterol": 182,
+              "fasting_glucose": 88,
+              "creatinine": 0.8,
+              "bmi": 23.1,
+              "smoker": false
+            },
+            "x_t": "Annual check-up. No complaints.",
+            "x_l": [
+              {
+                "time": "07:05",
+                "text": "Registered for annual check-up"
+              },
+              {
+                "time": "07:12",
+                "text": "Vitals recorded by nursing staff"
+              }
+            ],
+            "source": "morning_batch.csv:2"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.052,
+              "low_risk": 0.948
+            },
+            "logit": -2.904,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 42,
+                "imputed": false,
+                "contribution": -0.48
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 118,
+                "imputed": false,
+                "contribution": -0.036
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 182,
+                "imputed": false,
+                "contribution": -0.072
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 88,
+                "imputed": false,
+                "contribution": -0.02
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 23.1,
+                "imputed": false,
+                "contribution": -0.036
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.8,
+                "imputed": false,
+                "contribution": -0.06
+              }
+            ],
+            "importance": [
+              "age",
+              "total_cholesterol",
+              "creatinine",
+              "systolic_bp",
+              "bmi",
+              "fasting_glucose",
+              "sex_m",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-GEN-001",
+              "score": 0.78,
+              "direction": "lowers",
+              "matched_on": "BP, cholesterol and glucose in range; non-smoker"
+            }
+          ],
+          "context": {
+            "summary": "Blood pressure, cholesterol and fasting glucose are within the reference ranges, and the patient does not smoke. The ML model estimates a low risk, and the retrieved evidence describes this profile as low risk. No rule was triggered and the components agree.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "low_risk",
+            "confidence": 0.93,
+            "raw": 0.93,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.948,
+              "R": 1,
+              "K": 0.78,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.474,
+              "bR": 0.3,
+              "gK": 0.156,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Routine follow-up.",
+          "priority": {
+            "level": 5,
+            "key": "routine",
+            "label": "Routine"
+          },
+          "report": {
+            "case_id": "C-1041",
+            "patient_id": "P-1041",
+            "findings": [
+              "age = 42",
+              "total_cholesterol = 182",
+              "creatinine = 0.8"
+            ],
+            "prediction": "low_risk",
+            "decision": "low_risk",
+            "triggered_rules": [],
+            "evidence_refs": [
+              "KB-GEN-001"
+            ],
+            "conflicts": [],
+            "confidence": 0.93,
+            "component_scores": {
+              "M": 0.948,
+              "R": 1,
+              "K": 0.78,
+              "D": 0
+            },
+            "summary": "Blood pressure, cholesterol and fasting glucose are within the reference ranges, and the patient does not smoke. The ML model estimates a low risk, and the retrieved evidence describes this profile as low risk. No rule was triggered and the components agree.",
+            "recommendation": "Routine follow-up.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1042",
+            "patient_id": "P-1042",
+            "x_s": {
+              "age": 34,
+              "sex": "M",
+              "systolic_bp": 186,
+              "diastolic_bp": 112,
+              "heart_rate": 88,
+              "temperature_c": 36.9,
+              "total_cholesterol": 176,
+              "fasting_glucose": 94,
+              "creatinine": 0.9,
+              "bmi": 24.6,
+              "smoker": false
+            },
+            "x_t": "Headache since morning, one high reading at triage.",
+            "x_l": [
+              {
+                "time": "07:58",
+                "text": "Arrived at outpatient triage with headache"
+              },
+              {
+                "time": "08:12",
+                "text": "Triage BP 186/112 mmHg"
+              },
+              {
+                "time": "08:20",
+                "text": "Repeat BP reading requested"
+              }
+            ],
+            "source": "morning_batch.csv:3"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.17,
+              "low_risk": 0.83
+            },
+            "logit": -1.584,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 34,
+                "imputed": false,
+                "contribution": -0.96
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 186,
+                "imputed": false,
+                "contribution": 1.188
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 176,
+                "imputed": false,
+                "contribution": -0.126
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 94,
+                "imputed": false,
+                "contribution": 0.04
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 24.6,
+                "imputed": false,
+                "contribution": 0.024
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.9,
+                "imputed": false,
+                "contribution": 0
+              }
+            ],
+            "importance": [
+              "systolic_bp",
+              "age",
+              "sex_m",
+              "total_cholesterol",
+              "fasting_glucose",
+              "bmi",
+              "smoker",
+              "creatinine"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-001"
+            ],
+            "flags": [
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "action": "elevate",
+            "reason": "Systolic blood pressure at or above 180 mmHg; urgent review advised.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-001",
+              "score": 0.872,
+              "direction": "raises",
+              "matched_on": "systolic BP 186 mmHg"
+            },
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.84,
+              "direction": "raises",
+              "matched_on": "BP 186/112 mmHg"
+            }
+          ],
+          "context": {
+            "summary": "Systolic blood pressure was 186 mmHg at triage, which triggers rule R-001. The ML model estimates a low long-term risk because the patient is young and the other risk factors are normal. The rule result and the retrieved evidence on severely raised blood pressure disagree with the model, so the case is escalated for clinician review.",
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 186 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.253,
+            "raw": 0.253,
+            "disagreement": 0.667,
+            "component_scores": {
+              "M": 0.83,
+              "R": 0,
+              "K": 0.856,
+              "D": 0.667
+            },
+            "terms": {
+              "aM": 0.415,
+              "bR": 0,
+              "gK": 0.171,
+              "lD": 0.333
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": "high_risk",
+            "below_threshold": true
+          },
+          "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+          "priority": {
+            "level": 1,
+            "key": "escalate",
+            "label": "Escalate"
+          },
+          "report": {
+            "case_id": "C-1042",
+            "patient_id": "P-1042",
+            "findings": [
+              "systolic_bp = 186",
+              "age = 34",
+              "sex = M",
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "prediction": "low_risk",
+            "decision": "high_risk",
+            "triggered_rules": [
+              "R-001"
+            ],
+            "evidence_refs": [
+              "KB-HTN-001",
+              "KB-HTN-004"
+            ],
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 186 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "confidence": 0.253,
+            "component_scores": {
+              "M": 0.83,
+              "R": 0,
+              "K": 0.856,
+              "D": 0.667
+            },
+            "summary": "Systolic blood pressure was 186 mmHg at triage, which triggers rule R-001. The ML model estimates a low long-term risk because the patient is young and the other risk factors are normal. The rule result and the retrieved evidence on severely raised blood pressure disagree with the model, so the case is escalated for clinician review.",
+            "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1043",
+            "patient_id": "P-1043",
+            "x_s": {
+              "age": 67,
+              "sex": "M",
+              "systolic_bp": 164,
+              "diastolic_bp": 96,
+              "heart_rate": 84,
+              "temperature_c": 36.8,
+              "total_cholesterol": 258,
+              "fasting_glucose": 142,
+              "creatinine": 1.3,
+              "bmi": 31.2,
+              "smoker": true
+            },
+            "x_t": "Exertional chest tightness for two weeks.",
+            "x_l": [
+              {
+                "time": "07:20",
+                "text": "Referred by general physician"
+              },
+              {
+                "time": "07:41",
+                "text": "Outpatient ECG ordered"
+              }
+            ],
+            "source": "morning_batch.csv:4"
+          },
+          "ml": {
+            "prediction": "high_risk",
+            "probabilities": {
+              "high_risk": 0.929,
+              "low_risk": 0.071
+            },
+            "logit": 2.572,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 67,
+                "imputed": false,
+                "contribution": 1.02
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 164,
+                "imputed": false,
+                "contribution": 0.792
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 258,
+                "imputed": false,
+                "contribution": 0.612
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 142,
+                "imputed": false,
+                "contribution": 0.52
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.85
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 31.2,
+                "imputed": false,
+                "contribution": 0.288
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1.3,
+                "imputed": false,
+                "contribution": 0.24
+              }
+            ],
+            "importance": [
+              "age",
+              "smoker",
+              "systolic_bp",
+              "total_cholesterol",
+              "fasting_glucose",
+              "sex_m",
+              "bmi",
+              "creatinine"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.796,
+              "direction": "raises",
+              "matched_on": "BP 164/96 mmHg"
+            },
+            {
+              "source_id": "KB-SMK-003",
+              "score": 0.79,
+              "direction": "raises",
+              "matched_on": "current smoker"
+            },
+            {
+              "source_id": "KB-DM-010",
+              "score": 0.772,
+              "direction": "raises",
+              "matched_on": "fasting glucose 142 mg/dL"
+            },
+            {
+              "source_id": "KB-LIP-007",
+              "score": 0.756,
+              "direction": "raises",
+              "matched_on": "total cholesterol 258 mg/dL"
+            }
+          ],
+          "context": {
+            "summary": "Blood pressure, total cholesterol and fasting glucose are raised, and the patient smokes. The ML model estimates a high risk, consistent with the retrieved evidence on each of these factors. No rule was triggered and the components agree.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.92,
+            "raw": 0.92,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.929,
+              "R": 1,
+              "K": 0.779,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.465,
+              "bR": 0.3,
+              "gK": 0.156,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Prioritize clinician review today.",
+          "priority": {
+            "level": 3,
+            "key": "priority",
+            "label": "Priority"
+          },
+          "report": {
+            "case_id": "C-1043",
+            "patient_id": "P-1043",
+            "findings": [
+              "age = 67",
+              "smoker = yes",
+              "systolic_bp = 164"
+            ],
+            "prediction": "high_risk",
+            "decision": "high_risk",
+            "triggered_rules": [],
+            "evidence_refs": [
+              "KB-HTN-004",
+              "KB-SMK-003",
+              "KB-DM-010",
+              "KB-LIP-007"
+            ],
+            "conflicts": [],
+            "confidence": 0.92,
+            "component_scores": {
+              "M": 0.929,
+              "R": 1,
+              "K": 0.779,
+              "D": 0
+            },
+            "summary": "Blood pressure, total cholesterol and fasting glucose are raised, and the patient smokes. The ML model estimates a high risk, consistent with the retrieved evidence on each of these factors. No rule was triggered and the components agree.",
+            "recommendation": "Prioritize clinician review today.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1044",
+            "patient_id": "P-1044",
+            "x_s": {
+              "age": 61,
+              "sex": "M",
+              "systolic_bp": 136,
+              "diastolic_bp": 84,
+              "heart_rate": 78,
+              "temperature_c": 36.6,
+              "total_cholesterol": 228,
+              "fasting_glucose": 118,
+              "creatinine": 1.1,
+              "bmi": 28.9,
+              "smoker": false
+            },
+            "x_t": "Occasional palpitations, one fainting episode last month.",
+            "x_l": [
+              {
+                "time": "07:33",
+                "text": "Follow-up after an emergency visit last month"
+              },
+              {
+                "time": "07:50",
+                "text": "Holter monitoring discussed"
+              }
+            ],
+            "source": "morning_batch.csv:5"
+          },
+          "ml": {
+            "prediction": "high_risk",
+            "probabilities": {
+              "high_risk": 0.534,
+              "low_risk": 0.466
+            },
+            "logit": 0.136,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 61,
+                "imputed": false,
+                "contribution": 0.66
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 136,
+                "imputed": false,
+                "contribution": 0.288
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 228,
+                "imputed": false,
+                "contribution": 0.342
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 118,
+                "imputed": false,
+                "contribution": 0.28
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 28.9,
+                "imputed": false,
+                "contribution": 0.196
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1.1,
+                "imputed": false,
+                "contribution": 0.12
+              }
+            ],
+            "importance": [
+              "age",
+              "sex_m",
+              "total_cholesterol",
+              "systolic_bp",
+              "fasting_glucose",
+              "bmi",
+              "creatinine",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [],
+          "context": {
+            "summary": "Blood pressure, cholesterol and fasting glucose are mildly raised but below the usual treatment thresholds. The ML model leans toward high risk, but no sufficiently relevant evidence was found in the knowledge base. The notes mention palpitations and a recent fainting episode, which this framework does not assess.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "uncertain",
+            "confidence": 0.567,
+            "raw": 0.567,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.534,
+              "R": 1,
+              "K": 0,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.267,
+              "bR": 0.3,
+              "gK": 0,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": true
+          },
+          "recommendation": "Clinician review advised: the evidence is not strong enough for a confident recommendation.",
+          "priority": {
+            "level": 2,
+            "key": "review",
+            "label": "Review"
+          },
+          "report": {
+            "case_id": "C-1044",
+            "patient_id": "P-1044",
+            "findings": [
+              "age = 61",
+              "sex = M",
+              "total_cholesterol = 228"
+            ],
+            "prediction": "high_risk",
+            "decision": "uncertain",
+            "triggered_rules": [],
+            "evidence_refs": [],
+            "conflicts": [],
+            "confidence": 0.567,
+            "component_scores": {
+              "M": 0.534,
+              "R": 1,
+              "K": 0,
+              "D": 0
+            },
+            "summary": "Blood pressure, cholesterol and fasting glucose are mildly raised but below the usual treatment thresholds. The ML model leans toward high risk, but no sufficiently relevant evidence was found in the knowledge base. The notes mention palpitations and a recent fainting episode, which this framework does not assess.",
+            "recommendation": "Clinician review advised: the evidence is not strong enough for a confident recommendation.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1045",
+            "patient_id": "P-1045",
+            "x_s": {
+              "age": 63,
+              "sex": "F",
+              "systolic_bp": 148,
+              "diastolic_bp": 90,
+              "heart_rate": 76,
+              "temperature_c": 36.8,
+              "total_cholesterol": 246,
+              "fasting_glucose": 108,
+              "creatinine": null,
+              "bmi": 29.1,
+              "smoker": true
+            },
+            "x_t": "Creatinine sample not received by the lab.",
+            "x_l": [
+              {
+                "time": "07:15",
+                "text": "Blood samples collected"
+              },
+              {
+                "time": "07:46",
+                "text": "Lab: creatinine sample not received"
+              }
+            ],
+            "source": "morning_batch.csv:6"
+          },
+          "ml": {
+            "prediction": "high_risk",
+            "probabilities": {
+              "high_risk": 0.695,
+              "low_risk": 0.305
+            },
+            "logit": 0.822,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 63,
+                "imputed": false,
+                "contribution": 0.78
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 148,
+                "imputed": false,
+                "contribution": 0.504
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 246,
+                "imputed": false,
+                "contribution": 0.504
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 108,
+                "imputed": false,
+                "contribution": 0.18
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.85
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 29.1,
+                "imputed": false,
+                "contribution": 0.204
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.9,
+                "imputed": true,
+                "contribution": 0
+              }
+            ],
+            "importance": [
+              "smoker",
+              "age",
+              "systolic_bp",
+              "total_cholesterol",
+              "bmi",
+              "fasting_glucose",
+              "sex_m",
+              "creatinine"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-002"
+            ],
+            "flags": [
+              "Serum creatinine missing; kidney-related rules cannot be checked."
+            ],
+            "action": "flag",
+            "reason": "Serum creatinine missing; kidney-related rules cannot be checked.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-SMK-003",
+              "score": 0.79,
+              "direction": "raises",
+              "matched_on": "current smoker"
+            },
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.732,
+              "direction": "raises",
+              "matched_on": "BP 148/90 mmHg"
+            },
+            {
+              "source_id": "KB-LIP-007",
+              "score": 0.732,
+              "direction": "raises",
+              "matched_on": "total cholesterol 246 mg/dL"
+            },
+            {
+              "source_id": "KB-CKD-009",
+              "score": 0.62,
+              "direction": "neutral",
+              "matched_on": "creatinine missing"
+            }
+          ],
+          "context": {
+            "summary": "Blood pressure and total cholesterol are raised and the patient smokes. Serum creatinine is missing, so rule R-002 flags that kidney-related checks could not be run. The ML model estimates a high risk, consistent with the retrieved evidence.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.791,
+            "raw": 0.791,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.695,
+              "R": 1,
+              "K": 0.719,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.348,
+              "bR": 0.3,
+              "gK": 0.144,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Prioritize clinician review today.",
+          "priority": {
+            "level": 3,
+            "key": "priority",
+            "label": "Priority"
+          },
+          "report": {
+            "case_id": "C-1045",
+            "patient_id": "P-1045",
+            "findings": [
+              "smoker = yes",
+              "age = 63",
+              "systolic_bp = 148",
+              "Serum creatinine missing; kidney-related rules cannot be checked."
+            ],
+            "prediction": "high_risk",
+            "decision": "high_risk",
+            "triggered_rules": [
+              "R-002"
+            ],
+            "evidence_refs": [
+              "KB-SMK-003",
+              "KB-HTN-004",
+              "KB-LIP-007",
+              "KB-CKD-009"
+            ],
+            "conflicts": [],
+            "confidence": 0.791,
+            "component_scores": {
+              "M": 0.695,
+              "R": 1,
+              "K": 0.719,
+              "D": 0
+            },
+            "summary": "Blood pressure and total cholesterol are raised and the patient smokes. Serum creatinine is missing, so rule R-002 flags that kidney-related checks could not be run. The ML model estimates a high risk, consistent with the retrieved evidence.",
+            "recommendation": "Prioritize clinician review today.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1046",
+            "patient_id": "P-1046",
+            "x_s": {
+              "age": 16,
+              "sex": "M",
+              "systolic_bp": 124,
+              "diastolic_bp": 78,
+              "heart_rate": 92,
+              "temperature_c": 36.9,
+              "total_cholesterol": 165,
+              "fasting_glucose": 90,
+              "creatinine": 0.7,
+              "bmi": 21,
+              "smoker": false
+            },
+            "x_t": "Sports physical. Mild palpitations after exercise.",
+            "x_l": [
+              {
+                "time": "08:01",
+                "text": "Sports physical requested by school"
+              },
+              {
+                "time": "08:09",
+                "text": "Vitals recorded"
+              }
+            ],
+            "source": "morning_batch.csv:7"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.015,
+              "low_risk": 0.985
+            },
+            "logit": -4.183,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 16,
+                "imputed": false,
+                "contribution": -2.04
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 124,
+                "imputed": false,
+                "contribution": 0.072
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 165,
+                "imputed": false,
+                "contribution": -0.225
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 90,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 21,
+                "imputed": false,
+                "contribution": -0.12
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.7,
+                "imputed": false,
+                "contribution": -0.12
+              }
+            ],
+            "importance": [
+              "age",
+              "sex_m",
+              "total_cholesterol",
+              "bmi",
+              "creatinine",
+              "systolic_bp",
+              "fasting_glucose",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-003"
+            ],
+            "flags": [
+              "Model intended for adults; recommendation withheld under age 18."
+            ],
+            "action": "suppress",
+            "reason": "Model intended for adults; recommendation withheld under age 18.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-PED-002",
+              "score": 0.88,
+              "direction": "neutral",
+              "matched_on": "age 16"
+            }
+          ],
+          "context": {
+            "summary": "The patient is 16 years old, so rule R-003 withholds the risk recommendation because the model is intended for adults. The recorded values raise no immediate concern, but assessment should follow pediatric reference ranges.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "withheld",
+            "confidence": 0.669,
+            "raw": 0.669,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.985,
+              "R": 0,
+              "K": 0.88,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.493,
+              "bR": 0,
+              "gK": 0.176,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": "withheld",
+            "below_threshold": false
+          },
+          "recommendation": "Recommendation withheld: the risk model is intended for adults. Assess against pediatric reference ranges.",
+          "priority": {
+            "level": 4,
+            "key": "manual",
+            "label": "Assess manually"
+          },
+          "report": {
+            "case_id": "C-1046",
+            "patient_id": "P-1046",
+            "findings": [
+              "age = 16",
+              "sex = M",
+              "total_cholesterol = 165",
+              "Model intended for adults; recommendation withheld under age 18."
+            ],
+            "prediction": "low_risk",
+            "decision": "withheld",
+            "triggered_rules": [
+              "R-003"
+            ],
+            "evidence_refs": [
+              "KB-PED-002"
+            ],
+            "conflicts": [],
+            "confidence": 0.669,
+            "component_scores": {
+              "M": 0.985,
+              "R": 0,
+              "K": 0.88,
+              "D": 0
+            },
+            "summary": "The patient is 16 years old, so rule R-003 withholds the risk recommendation because the model is intended for adults. The recorded values raise no immediate concern, but assessment should follow pediatric reference ranges.",
+            "recommendation": "Recommendation withheld: the risk model is intended for adults. Assess against pediatric reference ranges.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1047",
+            "patient_id": "P-1047",
+            "x_s": {
+              "age": 72,
+              "sex": "F",
+              "systolic_bp": 158,
+              "diastolic_bp": 88,
+              "heart_rate": 82,
+              "temperature_c": 36.7,
+              "total_cholesterol": 251,
+              "fasting_glucose": 112,
+              "creatinine": 1.6,
+              "bmi": 29.8,
+              "smoker": false
+            },
+            "x_t": "Breathlessness on stairs and ankle swelling.",
+            "x_l": [
+              {
+                "time": "07:25",
+                "text": "Visit for breathlessness on exertion"
+              },
+              {
+                "time": "07:38",
+                "text": "Ankle swelling noted on examination"
+              }
+            ],
+            "source": "morning_batch.csv:8"
+          },
+          "ml": {
+            "prediction": "high_risk",
+            "probabilities": {
+              "high_risk": 0.773,
+              "low_risk": 0.227
+            },
+            "logit": 1.225,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 72,
+                "imputed": false,
+                "contribution": 1.32
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 158,
+                "imputed": false,
+                "contribution": 0.684
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 251,
+                "imputed": false,
+                "contribution": 0.549
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 112,
+                "imputed": false,
+                "contribution": 0.22
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 29.8,
+                "imputed": false,
+                "contribution": 0.232
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1.6,
+                "imputed": false,
+                "contribution": 0.42
+              }
+            ],
+            "importance": [
+              "age",
+              "systolic_bp",
+              "total_cholesterol",
+              "creatinine",
+              "bmi",
+              "fasting_glucose",
+              "sex_m",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.772,
+              "direction": "raises",
+              "matched_on": "BP 158/88 mmHg"
+            },
+            {
+              "source_id": "KB-LIP-007",
+              "score": 0.742,
+              "direction": "raises",
+              "matched_on": "total cholesterol 251 mg/dL"
+            },
+            {
+              "source_id": "KB-CKD-004",
+              "score": 0.71,
+              "direction": "raises",
+              "matched_on": "creatinine 1.6 mg/dL"
+            }
+          ],
+          "context": {
+            "summary": "Blood pressure and total cholesterol are raised, and serum creatinine is 1.6 mg/dL. The ML model estimates a high risk, consistent with the retrieved evidence on blood pressure, cholesterol and kidney function.",
+            "conflicts": [],
+            "unsupported_statements": [
+              "She has a known history of type 2 diabetes."
+            ],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.835,
+            "raw": 0.835,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.773,
+              "R": 1,
+              "K": 0.741,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.387,
+              "bR": 0.3,
+              "gK": 0.148,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Prioritize clinician review today.",
+          "priority": {
+            "level": 3,
+            "key": "priority",
+            "label": "Priority"
+          },
+          "report": {
+            "case_id": "C-1047",
+            "patient_id": "P-1047",
+            "findings": [
+              "age = 72",
+              "systolic_bp = 158",
+              "total_cholesterol = 251"
+            ],
+            "prediction": "high_risk",
+            "decision": "high_risk",
+            "triggered_rules": [],
+            "evidence_refs": [
+              "KB-HTN-004",
+              "KB-LIP-007",
+              "KB-CKD-004"
+            ],
+            "conflicts": [],
+            "confidence": 0.835,
+            "component_scores": {
+              "M": 0.773,
+              "R": 1,
+              "K": 0.741,
+              "D": 0
+            },
+            "summary": "Blood pressure and total cholesterol are raised, and serum creatinine is 1.6 mg/dL. The ML model estimates a high risk, consistent with the retrieved evidence on blood pressure, cholesterol and kidney function.",
+            "recommendation": "Prioritize clinician review today.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-1048",
+            "patient_id": "P-1048",
+            "x_s": {
+              "age": 29,
+              "sex": "F",
+              "systolic_bp": 112,
+              "diastolic_bp": 70,
+              "heart_rate": 66,
+              "temperature_c": 36.5,
+              "total_cholesterol": 170,
+              "fasting_glucose": 84,
+              "creatinine": 0.7,
+              "bmi": 21.8,
+              "smoker": false
+            },
+            "x_t": "Pre-employment health check.",
+            "x_l": [
+              {
+                "time": "07:10",
+                "text": "Pre-employment screening"
+              },
+              {
+                "time": "07:18",
+                "text": "Vitals recorded"
+              }
+            ],
+            "source": "morning_batch.csv:9"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.017,
+              "low_risk": 0.983
+            },
+            "logit": -4.052,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 29,
+                "imputed": false,
+                "contribution": -1.26
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 112,
+                "imputed": false,
+                "contribution": -0.144
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 170,
+                "imputed": false,
+                "contribution": -0.18
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 84,
+                "imputed": false,
+                "contribution": -0.06
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 21.8,
+                "imputed": false,
+                "contribution": -0.088
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.7,
+                "imputed": false,
+                "contribution": -0.12
+              }
+            ],
+            "importance": [
+              "age",
+              "total_cholesterol",
+              "systolic_bp",
+              "creatinine",
+              "bmi",
+              "fasting_glucose",
+              "sex_m",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-GEN-001",
+              "score": 0.78,
+              "direction": "lowers",
+              "matched_on": "BP, cholesterol and glucose in range; non-smoker"
+            }
+          ],
+          "context": {
+            "summary": "All recorded values are within the reference ranges and the patient does not smoke. The ML model and the retrieved evidence both indicate low risk.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "scripted"
+          },
+          "fusion": {
+            "decision": "low_risk",
+            "confidence": 0.948,
+            "raw": 0.948,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.983,
+              "R": 1,
+              "K": 0.78,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.492,
+              "bR": 0.3,
+              "gK": 0.156,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Routine follow-up.",
+          "priority": {
+            "level": 5,
+            "key": "routine",
+            "label": "Routine"
+          },
+          "report": {
+            "case_id": "C-1048",
+            "patient_id": "P-1048",
+            "findings": [
+              "age = 29",
+              "total_cholesterol = 170",
+              "systolic_bp = 112"
+            ],
+            "prediction": "low_risk",
+            "decision": "low_risk",
+            "triggered_rules": [],
+            "evidence_refs": [
+              "KB-GEN-001"
+            ],
+            "conflicts": [],
+            "confidence": 0.948,
+            "component_scores": {
+              "M": 0.983,
+              "R": 1,
+              "K": 0.78,
+              "D": 0
+            },
+            "summary": "All recorded values are within the reference ranges and the patient does not smoke. The ML model and the retrieved evidence both indicate low risk.",
+            "recommendation": "Routine follow-up.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "boundary_tests.csv",
+      "missing_columns": [],
+      "valid": 6,
+      "rejected": [],
+      "cases": [
+        {
+          "case": {
+            "case_id": "C-2001",
+            "patient_id": "P-2001",
+            "x_s": {
+              "age": 45,
+              "sex": "M",
+              "systolic_bp": 179,
+              "diastolic_bp": 92,
+              "heart_rate": 80,
+              "temperature_c": 36.8,
+              "total_cholesterol": 195,
+              "fasting_glucose": 96,
+              "creatinine": 1,
+              "bmi": 26,
+              "smoker": false
+            },
+            "x_t": "Boundary test: systolic 179 mmHg (just below the R-001 threshold).",
+            "x_l": [],
+            "source": "boundary_tests.csv:2"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.322,
+              "low_risk": 0.678
+            },
+            "logit": -0.743,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 45,
+                "imputed": false,
+                "contribution": -0.3
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 179,
+                "imputed": false,
+                "contribution": 1.062
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 195,
+                "imputed": false,
+                "contribution": 0.045
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 96,
+                "imputed": false,
+                "contribution": 0.06
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 26,
+                "imputed": false,
+                "contribution": 0.08
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.06
+              }
+            ],
+            "importance": [
+              "systolic_bp",
+              "sex_m",
+              "age",
+              "bmi",
+              "fasting_glucose",
+              "creatinine",
+              "total_cholesterol",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [],
+            "flags": [],
+            "action": null,
+            "reason": "no rule triggered",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.84,
+              "direction": "raises",
+              "matched_on": "BP 179/92 mmHg"
+            }
+          ],
+          "context": {
+            "summary": "Systolic blood pressure (179 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.32). No rule was triggered. Retrieved evidence: KB-HTN-004. One conflict between the components is reported for review.",
+            "conflicts": [
+              "Retrieved evidence (KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "low_risk",
+            "confidence": 0.64,
+            "raw": 0.64,
+            "disagreement": 0.333,
+            "component_scores": {
+              "M": 0.678,
+              "R": 1,
+              "K": 0.84,
+              "D": 0.333
+            },
+            "terms": {
+              "aM": 0.339,
+              "bR": 0.3,
+              "gK": 0.168,
+              "lD": 0.167
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Routine follow-up.",
+          "priority": {
+            "level": 5,
+            "key": "routine",
+            "label": "Routine"
+          },
+          "report": {
+            "case_id": "C-2001",
+            "patient_id": "P-2001",
+            "findings": [
+              "systolic_bp = 179",
+              "sex = M",
+              "age = 45"
+            ],
+            "prediction": "low_risk",
+            "decision": "low_risk",
+            "triggered_rules": [],
+            "evidence_refs": [
+              "KB-HTN-004"
+            ],
+            "conflicts": [
+              "Retrieved evidence (KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "confidence": 0.64,
+            "component_scores": {
+              "M": 0.678,
+              "R": 1,
+              "K": 0.84,
+              "D": 0.333
+            },
+            "summary": "Systolic blood pressure (179 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.32). No rule was triggered. Retrieved evidence: KB-HTN-004. One conflict between the components is reported for review.",
+            "recommendation": "Routine follow-up.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-2002",
+            "patient_id": "P-2002",
+            "x_s": {
+              "age": 45,
+              "sex": "M",
+              "systolic_bp": 180,
+              "diastolic_bp": 92,
+              "heart_rate": 80,
+              "temperature_c": 36.8,
+              "total_cholesterol": 195,
+              "fasting_glucose": 96,
+              "creatinine": 1,
+              "bmi": 26,
+              "smoker": false
+            },
+            "x_t": "Boundary test: systolic 180 mmHg (R-001 fires at 180).",
+            "x_l": [],
+            "source": "boundary_tests.csv:3"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.326,
+              "low_risk": 0.674
+            },
+            "logit": -0.725,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 45,
+                "imputed": false,
+                "contribution": -0.3
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 180,
+                "imputed": false,
+                "contribution": 1.08
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 195,
+                "imputed": false,
+                "contribution": 0.045
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 96,
+                "imputed": false,
+                "contribution": 0.06
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 26,
+                "imputed": false,
+                "contribution": 0.08
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.06
+              }
+            ],
+            "importance": [
+              "systolic_bp",
+              "sex_m",
+              "age",
+              "bmi",
+              "fasting_glucose",
+              "creatinine",
+              "total_cholesterol",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-001"
+            ],
+            "flags": [
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "action": "elevate",
+            "reason": "Systolic blood pressure at or above 180 mmHg; urgent review advised.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-001",
+              "score": 0.86,
+              "direction": "raises",
+              "matched_on": "systolic BP 180 mmHg"
+            },
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.84,
+              "direction": "raises",
+              "matched_on": "BP 180/92 mmHg"
+            }
+          ],
+          "context": {
+            "summary": "Systolic blood pressure (180 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.33). Rule R-001 elevates the case: Systolic blood pressure at or above 180 mmHg; urgent review advised. Retrieved evidence: KB-HTN-001, KB-HTN-004. 2 conflicts between the components are reported for review.",
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 180 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.174,
+            "raw": 0.174,
+            "disagreement": 0.667,
+            "component_scores": {
+              "M": 0.674,
+              "R": 0,
+              "K": 0.85,
+              "D": 0.667
+            },
+            "terms": {
+              "aM": 0.337,
+              "bR": 0,
+              "gK": 0.17,
+              "lD": 0.333
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": "high_risk",
+            "below_threshold": true
+          },
+          "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+          "priority": {
+            "level": 1,
+            "key": "escalate",
+            "label": "Escalate"
+          },
+          "report": {
+            "case_id": "C-2002",
+            "patient_id": "P-2002",
+            "findings": [
+              "systolic_bp = 180",
+              "sex = M",
+              "age = 45",
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "prediction": "low_risk",
+            "decision": "high_risk",
+            "triggered_rules": [
+              "R-001"
+            ],
+            "evidence_refs": [
+              "KB-HTN-001",
+              "KB-HTN-004"
+            ],
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 180 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "confidence": 0.174,
+            "component_scores": {
+              "M": 0.674,
+              "R": 0,
+              "K": 0.85,
+              "D": 0.667
+            },
+            "summary": "Systolic blood pressure (180 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.33). Rule R-001 elevates the case: Systolic blood pressure at or above 180 mmHg; urgent review advised. Retrieved evidence: KB-HTN-001, KB-HTN-004. 2 conflicts between the components are reported for review.",
+            "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-2003",
+            "patient_id": "P-2003",
+            "x_s": {
+              "age": 45,
+              "sex": "M",
+              "systolic_bp": 181,
+              "diastolic_bp": 92,
+              "heart_rate": 80,
+              "temperature_c": 36.8,
+              "total_cholesterol": 195,
+              "fasting_glucose": 96,
+              "creatinine": 1,
+              "bmi": 26,
+              "smoker": false
+            },
+            "x_t": "Boundary test: systolic 181 mmHg.",
+            "x_l": [],
+            "source": "boundary_tests.csv:4"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.33,
+              "low_risk": 0.67
+            },
+            "logit": -0.707,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 45,
+                "imputed": false,
+                "contribution": -0.3
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 181,
+                "imputed": false,
+                "contribution": 1.098
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 195,
+                "imputed": false,
+                "contribution": 0.045
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 96,
+                "imputed": false,
+                "contribution": 0.06
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 26,
+                "imputed": false,
+                "contribution": 0.08
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.06
+              }
+            ],
+            "importance": [
+              "systolic_bp",
+              "sex_m",
+              "age",
+              "bmi",
+              "fasting_glucose",
+              "creatinine",
+              "total_cholesterol",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-001"
+            ],
+            "flags": [
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "action": "elevate",
+            "reason": "Systolic blood pressure at or above 180 mmHg; urgent review advised.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HTN-001",
+              "score": 0.862,
+              "direction": "raises",
+              "matched_on": "systolic BP 181 mmHg"
+            },
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.84,
+              "direction": "raises",
+              "matched_on": "BP 181/92 mmHg"
+            }
+          ],
+          "context": {
+            "summary": "Systolic blood pressure (181 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.33). Rule R-001 elevates the case: Systolic blood pressure at or above 180 mmHg; urgent review advised. Retrieved evidence: KB-HTN-001, KB-HTN-004. 2 conflicts between the components are reported for review.",
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 181 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.172,
+            "raw": 0.172,
+            "disagreement": 0.667,
+            "component_scores": {
+              "M": 0.67,
+              "R": 0,
+              "K": 0.851,
+              "D": 0.667
+            },
+            "terms": {
+              "aM": 0.335,
+              "bR": 0,
+              "gK": 0.17,
+              "lD": 0.333
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": "high_risk",
+            "below_threshold": true
+          },
+          "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+          "priority": {
+            "level": 1,
+            "key": "escalate",
+            "label": "Escalate"
+          },
+          "report": {
+            "case_id": "C-2003",
+            "patient_id": "P-2003",
+            "findings": [
+              "systolic_bp = 181",
+              "sex = M",
+              "age = 45",
+              "Systolic blood pressure at or above 180 mmHg; urgent review advised."
+            ],
+            "prediction": "low_risk",
+            "decision": "high_risk",
+            "triggered_rules": [
+              "R-001"
+            ],
+            "evidence_refs": [
+              "KB-HTN-001",
+              "KB-HTN-004"
+            ],
+            "conflicts": [
+              "ML predicts low risk, but rule R-001 elevates the case (Systolic BP 181 mmHg).",
+              "Retrieved evidence (KB-HTN-001, KB-HTN-004) points to raised risk, while ML predicts low risk."
+            ],
+            "confidence": 0.172,
+            "component_scores": {
+              "M": 0.67,
+              "R": 0,
+              "K": 0.851,
+              "D": 0.667
+            },
+            "summary": "Systolic blood pressure (181 mmHg) is above the reference range. The ML model estimates a low risk (probability of high risk 0.33). Rule R-001 elevates the case: Systolic blood pressure at or above 180 mmHg; urgent review advised. Retrieved evidence: KB-HTN-001, KB-HTN-004. 2 conflicts between the components are reported for review.",
+            "recommendation": "Escalate for same-day clinician review; rule R-001 overrides the model. Confirm the blood pressure with a repeat reading.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-2004",
+            "patient_id": "P-2004",
+            "x_s": {
+              "age": 17,
+              "sex": "F",
+              "systolic_bp": 118,
+              "diastolic_bp": 74,
+              "heart_rate": 78,
+              "temperature_c": 36.7,
+              "total_cholesterol": 160,
+              "fasting_glucose": 85,
+              "creatinine": 0.7,
+              "bmi": 21,
+              "smoker": false
+            },
+            "x_t": "School health check. Under 18 so the recommendation is withheld (R-003).",
+            "x_l": [],
+            "source": "boundary_tests.csv:5"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.008,
+              "low_risk": 0.992
+            },
+            "logit": -4.776,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 17,
+                "imputed": false,
+                "contribution": -1.98
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 118,
+                "imputed": false,
+                "contribution": -0.036
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 160,
+                "imputed": false,
+                "contribution": -0.27
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 85,
+                "imputed": false,
+                "contribution": -0.05
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 21,
+                "imputed": false,
+                "contribution": -0.12
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.7,
+                "imputed": false,
+                "contribution": -0.12
+              }
+            ],
+            "importance": [
+              "age",
+              "total_cholesterol",
+              "bmi",
+              "creatinine",
+              "fasting_glucose",
+              "systolic_bp",
+              "sex_m",
+              "smoker"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-003"
+            ],
+            "flags": [
+              "Model intended for adults; recommendation withheld under age 18."
+            ],
+            "action": "suppress",
+            "reason": "Model intended for adults; recommendation withheld under age 18.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-PED-002",
+              "score": 0.88,
+              "direction": "neutral",
+              "matched_on": "age 17"
+            }
+          ],
+          "context": {
+            "summary": "The recorded values are within the reference ranges. The ML model estimates a low risk (probability of high risk 0.01). Rule R-003 suppresses the case: Model intended for adults; recommendation withheld under age 18. Retrieved evidence: KB-PED-002.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "withheld",
+            "confidence": 0.672,
+            "raw": 0.672,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.992,
+              "R": 0,
+              "K": 0.88,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.496,
+              "bR": 0,
+              "gK": 0.176,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": "withheld",
+            "below_threshold": false
+          },
+          "recommendation": "Recommendation withheld: the risk model is intended for adults. Assess against pediatric reference ranges.",
+          "priority": {
+            "level": 4,
+            "key": "manual",
+            "label": "Assess manually"
+          },
+          "report": {
+            "case_id": "C-2004",
+            "patient_id": "P-2004",
+            "findings": [
+              "age = 17",
+              "total_cholesterol = 160",
+              "bmi = 21",
+              "Model intended for adults; recommendation withheld under age 18."
+            ],
+            "prediction": "low_risk",
+            "decision": "withheld",
+            "triggered_rules": [
+              "R-003"
+            ],
+            "evidence_refs": [
+              "KB-PED-002"
+            ],
+            "conflicts": [],
+            "confidence": 0.672,
+            "component_scores": {
+              "M": 0.992,
+              "R": 0,
+              "K": 0.88,
+              "D": 0
+            },
+            "summary": "The recorded values are within the reference ranges. The ML model estimates a low risk (probability of high risk 0.01). Rule R-003 suppresses the case: Model intended for adults; recommendation withheld under age 18. Retrieved evidence: KB-PED-002.",
+            "recommendation": "Recommendation withheld: the risk model is intended for adults. Assess against pediatric reference ranges.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-2005",
+            "patient_id": "P-2005",
+            "x_s": {
+              "age": 52,
+              "sex": "F",
+              "systolic_bp": 132,
+              "diastolic_bp": 84,
+              "heart_rate": 124,
+              "temperature_c": 37,
+              "total_cholesterol": 205,
+              "fasting_glucose": 99,
+              "creatinine": 0.9,
+              "bmi": 27.5,
+              "smoker": false
+            },
+            "x_t": "Racing heart at rest. Heart rate 124 bpm (R-004).",
+            "x_l": [],
+            "source": "boundary_tests.csv:6"
+          },
+          "ml": {
+            "prediction": "low_risk",
+            "probabilities": {
+              "high_risk": 0.183,
+              "low_risk": 0.817
+            },
+            "logit": -1.499,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 52,
+                "imputed": false,
+                "contribution": 0.12
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 132,
+                "imputed": false,
+                "contribution": 0.216
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 205,
+                "imputed": false,
+                "contribution": 0.135
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 99,
+                "imputed": false,
+                "contribution": 0.09
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 0,
+                "imputed": false,
+                "contribution": 0
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 27.5,
+                "imputed": false,
+                "contribution": 0.14
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.9,
+                "imputed": false,
+                "contribution": 0
+              }
+            ],
+            "importance": [
+              "systolic_bp",
+              "bmi",
+              "total_cholesterol",
+              "age",
+              "fasting_glucose",
+              "sex_m",
+              "smoker",
+              "creatinine"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-004"
+            ],
+            "flags": [
+              "Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness."
+            ],
+            "action": "flag",
+            "reason": "Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-HR-005",
+              "score": 0.752,
+              "direction": "neutral",
+              "matched_on": "heart rate 124 bpm"
+            }
+          ],
+          "context": {
+            "summary": "Raised values: systolic blood pressure (132 mmHg), total cholesterol (205 mg/dL), heart rate (124 bpm). The ML model estimates a low risk (probability of high risk 0.18). Rule R-004 flags the case: Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness. Retrieved evidence: KB-HR-005.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "low_risk",
+            "confidence": 0.859,
+            "raw": 0.859,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.817,
+              "R": 1,
+              "K": 0.752,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.409,
+              "bR": 0.3,
+              "gK": 0.15,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Routine follow-up once the flagged item is resolved. Check the rhythm and look for an acute cause.",
+          "priority": {
+            "level": 5,
+            "key": "routine",
+            "label": "Routine"
+          },
+          "report": {
+            "case_id": "C-2005",
+            "patient_id": "P-2005",
+            "findings": [
+              "systolic_bp = 132",
+              "bmi = 27.5",
+              "total_cholesterol = 205",
+              "Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness."
+            ],
+            "prediction": "low_risk",
+            "decision": "low_risk",
+            "triggered_rules": [
+              "R-004"
+            ],
+            "evidence_refs": [
+              "KB-HR-005"
+            ],
+            "conflicts": [],
+            "confidence": 0.859,
+            "component_scores": {
+              "M": 0.817,
+              "R": 1,
+              "K": 0.752,
+              "D": 0
+            },
+            "summary": "Raised values: systolic blood pressure (132 mmHg), total cholesterol (205 mg/dL), heart rate (124 bpm). The ML model estimates a low risk (probability of high risk 0.18). Rule R-004 flags the case: Resting heart rate at or above 120 bpm; check for arrhythmia or acute illness. Retrieved evidence: KB-HR-005.",
+            "recommendation": "Routine follow-up once the flagged item is resolved. Check the rhythm and look for an acute cause.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        },
+        {
+          "case": {
+            "case_id": "C-2006",
+            "patient_id": "P-2006",
+            "x_s": {
+              "age": 58,
+              "sex": "M",
+              "systolic_bp": 142,
+              "diastolic_bp": 88,
+              "heart_rate": 76,
+              "temperature_c": 36.6,
+              "total_cholesterol": 215,
+              "fasting_glucose": 104,
+              "creatinine": null,
+              "bmi": 28.1,
+              "smoker": true
+            },
+            "x_t": "Creatinine result not available (R-002).",
+            "x_l": [],
+            "source": "boundary_tests.csv:7"
+          },
+          "ml": {
+            "prediction": "high_risk",
+            "probabilities": {
+              "high_risk": 0.624,
+              "low_risk": 0.376
+            },
+            "logit": 0.505,
+            "contributions": [
+              {
+                "key": "age",
+                "label": "Age",
+                "unit": "years",
+                "value": 58,
+                "imputed": false,
+                "contribution": 0.48
+              },
+              {
+                "key": "sex_m",
+                "label": "Male sex",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.45
+              },
+              {
+                "key": "systolic_bp",
+                "label": "Systolic BP",
+                "unit": "mmHg",
+                "value": 142,
+                "imputed": false,
+                "contribution": 0.396
+              },
+              {
+                "key": "total_cholesterol",
+                "label": "Total cholesterol",
+                "unit": "mg/dL",
+                "value": 215,
+                "imputed": false,
+                "contribution": 0.225
+              },
+              {
+                "key": "fasting_glucose",
+                "label": "Fasting glucose",
+                "unit": "mg/dL",
+                "value": 104,
+                "imputed": false,
+                "contribution": 0.14
+              },
+              {
+                "key": "smoker",
+                "label": "Current smoker",
+                "unit": "",
+                "value": 1,
+                "imputed": false,
+                "contribution": 0.85
+              },
+              {
+                "key": "bmi",
+                "label": "BMI",
+                "unit": "kg/m²",
+                "value": 28.1,
+                "imputed": false,
+                "contribution": 0.164
+              },
+              {
+                "key": "creatinine",
+                "label": "Creatinine",
+                "unit": "mg/dL",
+                "value": 0.9,
+                "imputed": true,
+                "contribution": 0
+              }
+            ],
+            "importance": [
+              "smoker",
+              "age",
+              "sex_m",
+              "systolic_bp",
+              "total_cholesterol",
+              "bmi",
+              "fasting_glucose",
+              "creatinine"
+            ],
+            "model_version": "risk-lr 0.3 (demo weights)"
+          },
+          "rules": {
+            "triggered": [
+              "R-002"
+            ],
+            "flags": [
+              "Serum creatinine missing; kidney-related rules cannot be checked."
+            ],
+            "action": "flag",
+            "reason": "Serum creatinine missing; kidney-related rules cannot be checked.",
+            "rulebase_version": "1.0.0"
+          },
+          "evidence": [
+            {
+              "source_id": "KB-SMK-003",
+              "score": 0.79,
+              "direction": "raises",
+              "matched_on": "current smoker"
+            },
+            {
+              "source_id": "KB-HTN-004",
+              "score": 0.708,
+              "direction": "raises",
+              "matched_on": "BP 142/88 mmHg"
+            },
+            {
+              "source_id": "KB-CKD-009",
+              "score": 0.62,
+              "direction": "neutral",
+              "matched_on": "creatinine missing"
+            }
+          ],
+          "context": {
+            "summary": "Raised values: systolic blood pressure (142 mmHg), total cholesterol (215 mg/dL), fasting glucose (104 mg/dL). The patient smokes. The ML model estimates a high risk (probability of high risk 0.62). Rule R-002 flags the case: Serum creatinine missing; kidney-related rules cannot be checked. Retrieved evidence: KB-SMK-003, KB-HTN-004, KB-CKD-009.",
+            "conflicts": [],
+            "unsupported_statements": [],
+            "generated_by": "template"
+          },
+          "fusion": {
+            "decision": "high_risk",
+            "confidence": 0.753,
+            "raw": 0.753,
+            "disagreement": 0,
+            "component_scores": {
+              "M": 0.624,
+              "R": 1,
+              "K": 0.706,
+              "D": 0
+            },
+            "terms": {
+              "aM": 0.312,
+              "bR": 0.3,
+              "gK": 0.141,
+              "lD": 0
+            },
+            "threshold": 0.6,
+            "weights": {
+              "alpha": 0.5,
+              "beta": 0.3,
+              "gamma": 0.2,
+              "lam": 0.5
+            },
+            "override": null,
+            "below_threshold": false
+          },
+          "recommendation": "Prioritize clinician review today.",
+          "priority": {
+            "level": 3,
+            "key": "priority",
+            "label": "Priority"
+          },
+          "report": {
+            "case_id": "C-2006",
+            "patient_id": "P-2006",
+            "findings": [
+              "smoker = yes",
+              "age = 58",
+              "sex = M",
+              "Serum creatinine missing; kidney-related rules cannot be checked."
+            ],
+            "prediction": "high_risk",
+            "decision": "high_risk",
+            "triggered_rules": [
+              "R-002"
+            ],
+            "evidence_refs": [
+              "KB-SMK-003",
+              "KB-HTN-004",
+              "KB-CKD-009"
+            ],
+            "conflicts": [],
+            "confidence": 0.753,
+            "component_scores": {
+              "M": 0.624,
+              "R": 1,
+              "K": 0.706,
+              "D": 0
+            },
+            "summary": "Raised values: systolic blood pressure (142 mmHg), total cholesterol (215 mg/dL), fasting glucose (104 mg/dL). The patient smokes. The ML model estimates a high risk (probability of high risk 0.62). Rule R-002 flags the case: Serum creatinine missing; kidney-related rules cannot be checked. Retrieved evidence: KB-SMK-003, KB-HTN-004, KB-CKD-009.",
+            "recommendation": "Prioritize clinician review today.",
+            "status": "pending_review",
+            "notes": "",
+            "versions": {
+              "model": "risk-lr 0.3 (demo weights)",
+              "rulebase": "1.0.0",
+              "index": "kb-v3"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

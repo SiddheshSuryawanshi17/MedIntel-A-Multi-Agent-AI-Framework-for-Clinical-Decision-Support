@@ -1,0 +1,37 @@
+{
+  "mode": "batch",
+  "cases": "all",
+  "n_cases": 85,
+  "results": {
+    "claude-opus-5-5 (effort low, prompt 9820e7c4)": {
+      "cases": 85,
+      "usable_replies": 85,
+      "fallbacks": 0,
+      "sentences_per_case": 5.0,
+      "sentences_removed_by_tc12": 3,
+      "removed_share": 0.007,
+      "cases_with_a_removal": 3,
+      "mean_input_tokens": 2006,
+      "mean_output_tokens": 683,
+      "cost_usd_total": 0.9332,
+      "cost_usd_per_case": 0.01098,
+      "latency_s_mean": null,
+      "latency_s_max": null
+    },
+    "claude-opus-5-5 (effort medium, prompt 9820e7c4)": {
+      "cases": 85,
+      "usable_replies": 85,
+      "fallbacks": 0,
+      "sentences_per_case": 5.42,
+      "sentences_removed_by_tc12": 3,
+      "removed_share": 0.007,
+      "cases_with_a_removal": 3,
+      "mean_input_tokens": 2006,
+      "mean_output_tokens": 1001,
+      "cost_usd_total": 1.201,
+      "cost_usd_per_case": 0.01413,
+      "latency_s_mean": null,
+      "latency_s_max": null
+    }
+  }
+}

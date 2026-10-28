@@ -1,0 +1,7 @@
+patient_id,age,sex,systolic_bp,diastolic_bp,heart_rate,temperature_c,total_cholesterol,fasting_glucose,creatinine,bmi,smoker,notes
+P-2001,45,M,179,92,80,36.8,195,96,1.0,26.0,no,Boundary test: systolic 179 mmHg (just below the R-001 threshold).
+P-2002,45,M,180,92,80,36.8,195,96,1.0,26.0,no,Boundary test: systolic 180 mmHg (R-001 fires at 180).
+P-2003,45,M,181,92,80,36.8,195,96,1.0,26.0,no,Boundary test: systolic 181 mmHg.
+P-2004,17,F,118,74,78,36.7,160,85,0.7,21.0,no,School health check. Under 18 so the recommendation is withheld (R-003).
+P-2005,52,F,132,84,124,37.0,205,99,0.9,27.5,no,Racing heart at rest. Heart rate 124 bpm (R-004).
+P-2006,58,M,142,88,76,36.6,215,104,,28.1,yes,Creatinine result not available (R-002).

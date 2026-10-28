@@ -1,0 +1,15 @@
+.venv
+.git
+.github
+.env
+data
+models
+reports
+tests
+tools
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.db
+*.db-journal
+.DS_Store

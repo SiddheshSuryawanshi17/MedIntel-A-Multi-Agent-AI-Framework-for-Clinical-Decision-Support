@@ -1,0 +1,57 @@
+[project]
+name = "medintel"
+version = "0.1.0"
+description = "MedIntel: a multi-agent framework for clinical decision support, served over MCP (BE Project Stage II)"
+readme = "README.md"
+authors = [
+    { name = "Siddhesh Kishor Suryawanshi" },
+    { name = "Shantanu Avinash Patil" },
+    { name = "Omkar Abaji Musale" },
+    { name = "Tanmay Shriniwas Bagul" },
+]
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=1.15.0",
+    "anyio>=4",
+    "faiss-cpu>=1.15.1",
+    "fastapi>=0.143.3",
+    "mcp>=2,<3",
+    "numpy>=2.4.6",
+    "pydantic>=2.14.1",
+    "scikit-learn>=1.9.1",
+    "sentence-transformers>=6.1.0",
+    "torch>=2.14.1",
+]
+
+[project.scripts]
+medintel = "medintel.cli:main"
+medintel-mcp = "medintel.mcp_server:main"
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.26.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform != 'darwin'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

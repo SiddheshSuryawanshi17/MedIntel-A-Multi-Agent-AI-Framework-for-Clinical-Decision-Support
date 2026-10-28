@@ -1,0 +1,18 @@
+{
+  "name": "medintel-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MedIntel concept prototype: builds one offline HTML file (dist/MedIntel_Prototype.html)",
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "node tools/test_engine.js",
+    "icons": "node tools/gen_icons.js"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-mono": "5.1.1",
+    "@fontsource/ibm-plex-sans": "5.1.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-icons": "5.3.0"
+  }
+}

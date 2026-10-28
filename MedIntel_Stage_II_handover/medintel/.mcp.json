@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "medintel": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "medintel-mcp"]
+    }
+  }
+}

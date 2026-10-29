@@ -21,6 +21,7 @@ MedIntel_Prototype.html                 The prototype (open this)
 How to Use the MedIntel Prototype.pdf   The guide
 MedIntel_Presentation.pptx              The project presentation
 MedIntel_Stage1_Presentation_v5.pptx    The Stage I presentation (version 5)
+MedIntel_Report_Sem7_v3.pdf             The Semester 7 project report (version 3)
 sample_data/morning_batch.csv           The sample batch used in the demo
 sample_data/boundary_tests.csv          Extra patients for testing the rules
 source_code/                            Optional: only needed to change the prototype
